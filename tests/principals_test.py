@@ -60,3 +60,18 @@ def test_regrade_assignment(client, h_principal):
 
     assert response.json['data']['state'] == AssignmentStateEnum.GRADED.value
     assert response.json['data']['grade'] == GradeEnum.B
+
+def test_get_teacher(client, h_principal):
+    response = client.get(
+        '/principal/teachers',
+        headers=h_principal
+    )
+
+    assert response.status_code == 200
+    
+    # data = response.json['data']
+    # for teacher in data:
+    #     print(teacher)
+    # data = response.json['data']
+    # for assignment in data:
+    #     assert assignment['student_id'] == 1
